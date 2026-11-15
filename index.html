@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive CPU scheduling simulator for FCFS, SJF, Priority and Round Robin algorithms.">
+  <title>OS Scheduler | CPU Scheduling Simulator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">OS</div><div><strong>KernelLab</strong><span>OPERATING SYSTEMS</span></div></div>
+      <div class="side-label">WORKSPACE</div>
+      <a class="nav-item active" href="#simulator"><span>▦</span> Scheduler simulator</a>
+      <a class="nav-item" href="#results"><span>▤</span> Results & metrics</a>
+      <div class="sidebar-note"><div class="pulse"></div><div><b>Simulation ready</b><small>All algorithms available</small></div></div>
+      <div class="side-footer">OS MINI PROJECT<br><span>CPU SCHEDULING</span></div>
+    </aside>
+
+    <main class="main-content" id="simulator">
+      <header class="topbar">
+        <div><div class="eyebrow">OPERATING SYSTEMS / CPU MANAGEMENT</div><h1>CPU Scheduling Simulator</h1><p class="subtitle">Visualize how the operating system allocates CPU time to processes.</p></div>
+        <div class="top-chip"><span class="live-dot"></span> Interactive workspace</div>
+      </header>
+
+      <section class="algorithm-strip">
+        <button class="algo-card selected" data-algo="fcfs"><span class="algo-number">01</span><b>FCFS</b><small>First Come First Serve</small></button>
+        <button class="algo-card" data-algo="sjf"><span class="algo-number">02</span><b>SJF</b><small>Shortest Job First</small></button>
+        <button class="algo-card" data-algo="priority"><span class="algo-number">03</span><b>Priority</b><small>Priority Scheduling</small></button>
+        <button class="algo-card" data-algo="rr"><span class="algo-number">04</span><b>Round Robin</b><small>Time-sharing algorithm</small></button>
+      </section>
+
+      <div class="workspace-grid">
+        <section class="panel process-panel">
+          <div class="panel-heading"><div><div class="eyebrow">INPUT</div><h2>Process configuration</h2></div><button class="text-button" id="resetBtn">↺ Reset sample</button></div>
+          <p class="muted">Add processes and set their arrival, burst and priority values.</p>
+          <div class="table-wrap">
+            <table class="process-table">
+              <thead><tr><th>PROCESS</th><th>ARRIVAL TIME</th><th>BURST TIME</th><th>PRIORITY</th><th></th></tr></thead>
+              <tbody id="processBody"></tbody>
+            </table>
+          </div>
+          <div class="input-footer">
+            <button class="outline-button" id="addProcess">＋ Add process</button>
+            <div class="quantum-control" id="quantumControl"><label for="quantum">TIME QUANTUM</label><input id="quantum" type="number" min="1" value="2"></div>
+          </div>
+          <div class="hint">Lower priority number = higher priority. SJF and Priority are non-preemptive.</div>
+          <button class="run-button" id="runBtn">Run simulation <span>→</span></button>
+          <div class="error-message" id="errorMessage" role="alert"></div>
+        </section>
+
+        <section class="panel info-panel">
+          <div class="eyebrow">SELECTED ALGORITHM</div>
+          <div class="selected-algo"><div class="algo-icon">FC</div><div><h2 id="selectedName">First Come First Serve</h2><p id="selectedDescription">Processes execute in the order they arrive.</p></div></div>
+          <div class="info-divider"></div>
+          <div class="info-stat"><span>Scheduling type</span><b id="schedulingType">Non-preemptive</b></div>
+          <div class="info-stat"><span>Selection rule</span><b id="selectionRule">Earliest arrival</b></div>
+          <div class="info-stat"><span>CPU allocation</span><b id="allocationRule">Until completion</b></div>
+          <div class="tip-box"><b>Quick concept</b><p id="algorithmTip">FCFS is simple and fair by arrival order, but a long process can make shorter processes wait.</p></div>
+        </section>
+      </div>
+
+      <section class="panel results-panel" id="results">
+        <div class="panel-heading results-heading"><div><div class="eyebrow">OUTPUT</div><h2>Simulation results</h2></div><span class="result-status" id="resultStatus">Waiting to run</span></div>
+        <div class="metric-grid">
+          <div class="metric-card"><span>AVERAGE WAITING TIME</span><strong id="avgWaiting">—</strong><small>Time units</small></div>
+          <div class="metric-card"><span>AVERAGE TURNAROUND TIME</span><strong id="avgTurnaround">—</strong><small>Time units</small></div>
+          <div class="metric-card"><span>CPU BUSY TIME</span><strong id="busyTime">—</strong><small>Total execution time</small></div>
+          <div class="metric-card"><span>CPU UTILIZATION</span><strong id="utilization">—</strong><small>Busy time / elapsed time</small></div>
+        </div>
+        <div class="gantt-section"><div class="subheading"><div><h3>Gantt chart</h3><p class="muted">Timeline of CPU execution, including idle periods.</p></div><span class="chart-legend"><i></i> CPU execution <i class="idle-legend"></i> Idle</span></div>
+          <div class="gantt-scroll"><div id="ganttChart" class="gantt-chart"><div class="empty-state">Run the simulation to generate the Gantt chart.</div></div></div>
+        </div>
+        <div class="table-wrap result-table-wrap"><table class="result-table"><thead><tr><th>PROCESS</th><th>ARRIVAL</th><th>BURST</th><th>COMPLETION</th><th>TURNAROUND</th><th>WAITING</th></tr></thead><tbody id="resultBody"><tr><td colspan="6" class="empty-cell">Your process results will appear here.</td></tr></tbody></table></div>
+      </section>
+      <footer>KernelLab · OS Mini Project · CPU Scheduling Algorithms</footer>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
