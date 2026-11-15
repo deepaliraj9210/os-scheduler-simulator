@@ -48,28 +48,6 @@ Also test:
 - Round Robin with quantum 1.
 - Invalid negative arrival time or zero burst time (an error should be shown).
 
-## Upload to GitHub
-1. Sign in at [GitHub](https://github.com/) and click **New repository**.
-2. Name it `os-scheduler-simulator`; choose Public if you want to share it easily.
-3. Create the repository.
-4. On the repository page, choose **Add file → Upload files**.
-5. Upload `index.html`, `styles.css`, `script.js` and `README.md` (or upload the extracted project folder contents).
-6. In **Commit changes**, enter a summary such as `Add CPU scheduling simulator` and click **Commit changes**.
-
-## Deploy with GitHub Pages
-1. Open your repository on GitHub.
-2. Go to **Settings → Pages**.
-3. Under **Build and deployment**, choose **Deploy from a branch**.
-4. Select branch `main` and folder `/ (root)`, then click **Save**.
-5. Wait for GitHub Pages to publish. Refresh the Pages settings page to find the published website URL.
-6. Open the URL and test all four algorithms. Your home page is `index.html`, so it should load automatically.
-
-## Generate a QR code
-1. Copy your published GitHub Pages URL.
-2. Open a QR code generator such as [QRCode Monkey](https://www.qrcode-monkey.com/) or [Adobe Express QR Code Generator](https://www.adobe.com/express/feature/image/qr-code-generator).
-3. Paste your live project URL and generate the QR code.
-4. Download the QR image and scan it using your phone camera.
-5. Confirm that it opens the deployed project, not the GitHub repository editor.
 
 ## Project structure
 ```text
